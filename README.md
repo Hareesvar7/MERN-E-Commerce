@@ -3,6 +3,8 @@
 Check it out!!!
 https://mern-0fo7.onrender.com/
 
+In this project we can access it with two ways as an seller and consumer.
+
 # Run frontend (:3000) & backend (:5000)
 npm run dev
 
