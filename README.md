@@ -12,8 +12,10 @@ npm run data:import
 # Sample User Logins
 
 admin@email.com (Admin)
-123456
+
+Password = 123456
 
 dummy@gmail.com
-12345
+
+Password = 12345
 
