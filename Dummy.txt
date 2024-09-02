@@ -1,1 +1,127 @@
-D
+Azure Sample Questions and Answers:
+Virtual Machines and Load Balancing:
+
+Steps:
+Create a Virtual Machine (VM):
+
+Go to the Azure portal, click on "Create a resource."
+Choose "Virtual Machine."
+Select the Ubuntu 20.04 LTS image, choose the Standard B1s size.
+Configure the VM with a 50 GB managed disk.
+Create or select an existing Virtual Network (VNet) and subnet.
+Create or select an existing Network Security Group (NSG) that allows SSH (port 22) and HTTP (port 80).
+Deploy a web server (Apache):
+
+SSH into the VM.
+Run the following commands:
+bash
+Copy code
+sudo apt update
+sudo apt install apache2 -y
+echo "Hello, World!" | sudo tee /var/www/html/index.html
+sudo systemctl start apache2
+Ensure Apache is running by visiting the VM's public IP address.
+Create another identical VM:
+
+Repeat the above steps to create a second VM in a different zone.
+Configure a Load Balancer:
+
+Go to the Load Balancer service, click "Create."
+
+Choose "Standard" as the SKU, select the region, and the resource group.
+
+Configure the backend pool with the two VMs.
+
+Set up health probes and load balancing rules.
+
+Save and create the Load Balancer.
+
+Expected Output:
+Screenshots showing the VM setup, attached managed disk, and Load Balancer configuration.
+Azure App Service and ACR:
+
+Steps:
+Create a Docker image:
+
+Create a Dockerfile for Nginx:
+Dockerfile
+Copy code
+FROM nginx:alpine
+COPY index.html /usr/share/nginx/html/index.html
+Build the Docker image:
+bash
+Copy code
+docker build -t mynginx:latest .
+Push the Docker image to ACR:
+
+Log in to Azure:
+bash
+Copy code
+az login
+Create an ACR:
+bash
+Copy code
+az acr create --resource-group myResourceGroup --name myACR --sku Basic
+Push the image:
+bash
+Copy code
+az acr login --name myACR
+docker tag mynginx myACR.azurecr.io/mynginx:latest
+docker push myACR.azurecr.io/mynginx:latest
+Deploy the image using Azure App Service:
+
+Go to Azure portal, click on "Create a resource."
+
+Choose "Web App."
+
+Select "Docker Container" as the publish method.
+
+Set the image source to Azure Container Registry and select the image.
+
+Expected Output:
+Screenshots of the ACR with the Docker image and the deployed web app.
+Azure Storage Account and Static Website Hosting:
+
+Steps:
+Create a Storage Account:
+
+Go to Azure portal, click on "Create a resource."
+Choose "Storage Account."
+Configure the storage account, enabling the static website option.
+Upload index.html and error.html:
+
+Go to the storage account, click on "Containers."
+Select the $web container.
+Upload the index.html and error.html files.
+Configure Lifecycle Management:
+
+In the storage account, go to "Lifecycle Management."
+
+Add a rule to move files to cool storage after 30 days.
+
+Expected Output:
+Screenshots showing the storage account configuration, file uploads, and lifecycle management policy.
+GCP Sample Questions and Answers:
+Compute Engine and Load Balancing:
+Steps:
+Launch Compute Engine instances:
+
+Go to the GCP Console, click on "Compute Engine" > "VM Instances."
+Click "Create Instance."
+Select Ubuntu 20.04 LTS as the boot disk image.
+Set the zone to one region and create the instance.
+Repeat the process to create another instance in a different zone.
+Deploy a web server (Apache):
+
+SSH into each instance.
+Run the following commands:
+bash
+Copy code
+sudo apt update
+sudo apt install apache2 -y
+echo "Hello, World!" | sudo tee /var/www/html/index.html
+sudo systemctl start apache2
+Ensure Apache is running by visiting each instance's public IP address.
+Set up HTTP Load Balancer:
+
+Go
