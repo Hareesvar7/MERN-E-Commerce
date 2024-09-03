@@ -1,1 +1,58 @@
+import os
 
+def list_directories(request):
+    # List the directories in the current working directory
+    directories = [d for d in os.listdir('.') if os.path.isdir(d)]
+    return '\n'.join(directories)
+
+
+
+
+. Write the Cloud Function Code
+Create a file named main.py with the following content:
+
+python
+Copy code
+import os
+
+def list_directories(request):
+    # List the directories in the current working directory
+    directories = [d for d in os.listdir('.') if os.path.isdir(d)]
+    return '\n'.join(directories)
+Create a requirements.txt file to specify the dependencies:
+
+plaintext
+Copy code
+# No external dependencies needed
+2. Deploy the Cloud Function
+Use the Google Cloud SDK to deploy the function. Run the following commands in your terminal or Cloud Shell:
+
+bash
+Copy code
+# Set your Google Cloud project ID
+gcloud config set project YOUR_PROJECT_ID
+
+# Deploy the Cloud Function
+gcloud functions deploy list_directories \
+    --runtime python39 \
+    --trigger-http \
+    --allow-unauthenticated \
+    --entry-point list_directories
+Replace YOUR_PROJECT_ID with your actual Google Cloud project ID.
+
+3. Trigger the Function from Cloud Shell
+After deployment, you will receive a URL for the Cloud Function. You can use curl to trigger it from Cloud Shell:
+
+bash
+Copy code
+curl -X GET https://REGION-PROJECT_ID.cloudfunctions.net/list_directories
+Replace REGION and PROJECT_ID with the appropriate values from the URL provided after deployment.
+
+Important Notes:
+Permissions: Ensure that the Cloud Function has the necessary permissions to access and list directories if you're running this in a more complex setup.
+Cloud Shell: The Cloud Function's environment is different from Cloud Shell's environment. The function operates in its own isolated environment, which might not have the same directories or files as Cloud Shell.
+This setup provides a simple HTTP-triggered function that lists directories. Adjustments might be needed based on specific requirements or environment constraints.
+
+
+
+Don't share sensitive info. Chats may be reviewed and used to train our models. Learn more
